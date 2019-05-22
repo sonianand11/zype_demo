@@ -1,0 +1,23 @@
+= link_to "Back to Videos", videos_path
+- if false
+  %table{border: "1"}
+    %tbody
+      - @video.to_h.each do |key, value|
+        - if value.present?
+          %tr
+            %td= key.to_s.humanize
+            - if key.to_s == "categories"
+              %td
+                - value.each do |val|
+                  %label= "#{val['title']} : #{val['value']}"
+            - elsif  key.to_s == "thumbnails"
+              %td
+                - value.each do |val|
+                  %div
+                    %a{href: val["url"]}= val["url"]
+            - else
+              %td= value
+
+%div{id: "zype_#{@video._id}"}
+
+%script{src: "https://player.zype.com/embed/#{@video._id}.js?autoplay=true&app_key=#{ENV['ZYPE_APP_KEY']}", type: "text/javascript"}

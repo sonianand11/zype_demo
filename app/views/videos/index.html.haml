@@ -1,0 +1,13 @@
+%table
+  %tr
+    %th Thumbnail
+    %th Title
+  %tbody
+    - @videos.each do |video|
+      %tr
+        %td
+          %a{:href => "#{video_path(video._id)}"}
+            %img{:src => "#{video.thumbnails[0]['url']}"}/
+        %td
+          %a{:href => "#{video_path(video._id)}"}
+            = video.title
